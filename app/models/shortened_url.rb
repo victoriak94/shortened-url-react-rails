@@ -16,4 +16,15 @@ class ShortenedUrl < ApplicationRecord
             self.short_url = url
         end
     end
+
+    # Check for pre-existing urls before saving to db
+    def find_duplicate
+        ShortenedUrl.find_by_sanitize_url(self.sanitize_url)
+    end
+
+    def new_url?
+        find_duplicate.nil?
+    end
+
+    
 end
