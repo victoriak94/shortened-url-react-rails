@@ -1,6 +1,6 @@
 <center>
     <h2>Enter URL</h2>
-    <%= form_for(@url, url: shortened_urls/create) do |f| %>
+    <%= form_for(@url, url: shortened_urls_create_path) do |f| %>
         <%=f.label :original_url %>
         <%= f.text_field :original_url %>
 

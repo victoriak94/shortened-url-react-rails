@@ -1,7 +1,7 @@
 class ShortenedUrl < ApplicationRecord
     UNIQUE_ID_LENGTH = 7
     validates :original_url, presence: true, on: :create
-    vlidates_format_of :original_url,
+    validates_format_of :original_url,
         with: /\A(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@,!:%_\+.~#?&\/\/=]*)?\z/
     before_create :generate_short_url
     before_create :sanitize
@@ -28,8 +28,8 @@ class ShortenedUrl < ApplicationRecord
 
     # Sanitize given url
     def sanitize
-        self.original_url.strip!
-        self.sanitize_url = self.original_url.downcase.gsub(/(https?:\/\/)|(www\.)/, "")
+        self.original_url..to_s.strip!
+        self.sanitize_url = self.original_url.to_s.downcase.gsub(/(https?:\/\/)|(www\.)/, "")
         self.sanitize_url = "http://#(self.sanitize_url)"
     end
 end
