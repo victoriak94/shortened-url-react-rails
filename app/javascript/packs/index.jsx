@@ -5,11 +5,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import ShortenedUrlForm from "../components/shortened_url_form";
+import ShortenedUrlContainer from "../components/shortened_url_form";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <ShortenedUrlForm />,
+    <ShortenedUrlContainer />,
     document.body.appendChild(document.createElement("div"))
   );
 });
