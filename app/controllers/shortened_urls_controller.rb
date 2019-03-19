@@ -1,6 +1,5 @@
 class ShortenedUrlsController < ApplicationController
     before_action :find_url, only: [:show, :shortened]
-    skip_before_action :verify_authenticity_token
 
     def index
         @url = ShortenedUrl.new
@@ -16,9 +15,9 @@ class ShortenedUrlsController < ApplicationController
         @url.sanitize
         if @url.new_url?
             if @url.save
-                redirect_to shortened_path(@url.short_url)
+                redirect_to shortened_urls(@url)
             else
-                flash[:error] = "Check the error below:"
+                flash[:error] = "URL could not be saved"
                 render 'index'
             end
         else
